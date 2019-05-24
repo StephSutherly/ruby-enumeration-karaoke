@@ -51,4 +51,13 @@ attr_reader(:name, :capacity, :price, :till, :song_playlist, :guests)
     end
   end
 
+#Could I also, with a different algorithm, increase_till within check_in_guest?
+  def increase_till(room)
+    for guest in @guests
+      @till += @price
+    end
+    return @till
+  end
+
+
 end

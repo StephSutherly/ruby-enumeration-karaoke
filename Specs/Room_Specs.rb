@@ -103,6 +103,17 @@ class TestRoom  < MiniTest::Test
     assert_equal(expected, @room3.song_playlist)
   end
 
+  def test_increase_till
+    @room1.check_in_guests([@guest3, @guest2])
+    @room1.increase_till(@room1)
+    assert_equal(10, @room1.till)
+  end
+
+  def test_total_all_rooms
+    grand_total = @room1.till + @room2.till + @room3.till
+    assert_equal(16, grand_total)
+  end
+
 end
 
 # What happens if there are more guests trying to be checked in than there is free space in the room?////
