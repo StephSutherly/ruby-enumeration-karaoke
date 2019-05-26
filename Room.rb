@@ -60,4 +60,10 @@ attr_reader(:name, :capacity, :price, :till, :song_playlist, :guests)
   end
 
 
+  def fave_song_cheer(room, guest)
+    if room.song_playlist.include?(guest.fave_song)
+      p "Yeeeey!"
+    end
+  end
+
 end

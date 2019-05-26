@@ -19,13 +19,13 @@ class TestRoom  < MiniTest::Test
     @song8 = Song.new("Toxic", "Britney Spears")
     @song9 = Song.new("Shake it Off", "Taylor Swift")
 
-    @guest1 = Guest.new("Alice", 30)
-    @guest2 = Guest.new("Ross", 100)
-    @guest3 = Guest.new("Matthew", 15)
-    @guest4 = Guest.new("Leah", 50)
-    @guest5 = Guest.new("Priyanka", 34)
-    @guest6 = Guest.new("Marta", 25)
-    @guest7 = Guest.new("Evelyn", 400)
+    @guest1 = Guest.new("Alice", 30, @song1)
+    @guest2 = Guest.new("Ross", 100, @song3)
+    @guest3 = Guest.new("Matthew", 5, @song9)
+    @guest4 = Guest.new("Leah", 50, @song4)
+    @guest5 = Guest.new("Priyanka", 34, @song6)
+    @guest6 = Guest.new("Marta", 25, @song3)
+    @guest7 = Guest.new("Evelyn", 400, @song2)
 
     @room1 = Room.new("80's Dance",2, 5, 0, [@song1, @song4], [])
     @room2 = Room.new("Indie and Chill", 4, 4, 16,  [@song2, @song5], [@guest1, @guest2, @guest3, @guest4])
@@ -33,6 +33,17 @@ class TestRoom  < MiniTest::Test
 
   end
 
+  def test_check_in_guest
+    @room1.check_in_guest(@guest4)
+    assert_equal([@guest4], @room1.guests)
+  end
+
+  def test_check_in_guest__refuse_at_capacity
+    @room2.check_in_guest(@guest5)
+    assert_equal(4, @room2.guests.count)
+
+
+  end
   def test_room_name
     assert_equal("Indie and Chill", @room2.name)
   end
@@ -51,16 +62,6 @@ class TestRoom  < MiniTest::Test
 
   def test_till
     assert_equal(16, @room2.till)
-  end
-
-  def test_check_in_guest
-    @room1.check_in_guest(@guest4)
-    assert_equal([@guest4], @room1.guests)
-  end
-
-  def test_check_in_guest__refuse_at_capacity
-    @room2.check_in_guest(@guest5)
-    assert_equal(4, @room2.guests.count)
   end
 
 #multiple at once
@@ -114,7 +115,19 @@ class TestRoom  < MiniTest::Test
     assert_equal(16, grand_total)
   end
 
+
+  def test_fave_song_cheer
+    result = fave_song_cheer(@room2, @guest7)
+    assert_equal("Yeeeey!", result)
+  end
+
 end
 
+#Extensions
 # What happens if there are more guests trying to be checked in than there is free space in the room?////
-# Karaoke venues usually have an entry fee - So the guests could have money so they can pay it.
+# Karaoke venues usually have an entry fee - So the guests could have money so they can pay it. //Not working yet
+
+#Advanced Extensions
+# Guests could have a favourite song, and if their favourite song is on the room's playlist, they can cheer loudly! (return a string like "Whoo!")
+# Rooms can keep track of the entry fees/spending of the guests - maybe add a bar tab/bar class?
+# Add anything extra you think would be good to have at a karaoke venue!
