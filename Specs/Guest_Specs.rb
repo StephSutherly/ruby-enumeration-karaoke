@@ -61,9 +61,9 @@ class TestGuest  < MiniTest::Test
 
 #Not working yet
   def test_pay_entry__can_pay
-    @customer7.pay_entry(@room3)
-    assert_equal(392, @customer7.wallet)
-    assert_equal(32, @room3.till)
+    @guest7.pay_entry(@room3)
+    assert_equal(392, @guest7.wallet)
+    assert_equal(24, @room3.till)
   end
 
 end

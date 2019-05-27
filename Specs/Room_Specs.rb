@@ -27,7 +27,7 @@ class TestRoom  < MiniTest::Test
     @guest6 = Guest.new("Marta", 25, @song3)
     @guest7 = Guest.new("Evelyn", 400, @song2)
 
-    @room1 = Room.new("80's Dance",2, 5, 0, [@song1, @song4], [])
+    @room1 = Room.new("80's Dance", 2, 5, 0, [@song1, @song4], [])
     @room2 = Room.new("Indie and Chill", 4, 4, 16,  [@song2, @song5], [@guest1, @guest2, @guest3, @guest4])
     @room3 = Room.new("Mainstrem Pop", 6, 8, 0, [@song3,], [@guest1, @guest2, @guest3])
 
@@ -106,7 +106,7 @@ class TestRoom  < MiniTest::Test
 
   def test_increase_till
     @room1.check_in_guests([@guest3, @guest2])
-    @room1.increase_till(@room1)
+    @room1.increase_till()
     assert_equal(10, @room1.till)
   end
 
@@ -117,7 +117,7 @@ class TestRoom  < MiniTest::Test
 
 
   def test_fave_song_cheer
-    result = fave_song_cheer(@room2, @guest7)
+    result = @room2.fave_song_cheer(@guest7)
     assert_equal("Yeeeey!", result)
   end
 

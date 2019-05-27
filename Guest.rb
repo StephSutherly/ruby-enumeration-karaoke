@@ -22,6 +22,7 @@ attr_reader(:name, :wallet, :fave_song)
     end
   end
 
+#Better to make a pay function that can be adapted to other uses. 
 #not working yet
   def pay_entry(room)
     if guest_can_afford(room) == true

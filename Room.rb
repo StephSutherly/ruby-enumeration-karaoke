@@ -22,11 +22,11 @@ attr_reader(:name, :capacity, :price, :till, :song_playlist, :guests)
 # add the guest I'm on in the loop to the @guests array
 #how to add multiple guests under capacity.
 
-  def check_in_guests(new_array)
+  def check_in_guests(guests_to_check_in)
     while @guests.length <
     @capacity
-      @guests << new_array.first
-      new_array.shift
+      @guests << guests_to_check_in.first
+      guests_to_check_in.shift
     end
   end
 
@@ -52,7 +52,7 @@ attr_reader(:name, :capacity, :price, :till, :song_playlist, :guests)
   end
 
 #Could I also, with a different algorithm, increase_till within check_in_guest?
-  def increase_till(room)
+  def increase_till()
     for guest in @guests
       @till += @price
     end
@@ -60,9 +60,9 @@ attr_reader(:name, :capacity, :price, :till, :song_playlist, :guests)
   end
 
 
-  def fave_song_cheer(room, guest)
-    if room.song_playlist.include?(guest.fave_song)
-      p "Yeeeey!"
+  def fave_song_cheer(guest)
+    if @song_playlist.include?(guest.fave_song)
+      return "Yeeeey!"
     end
   end
 
